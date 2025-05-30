@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario Médico</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>¿Querés mejorar tu cobertura médica sin pagar de más?</h1>
+    <p class="descripcion">
+      Descubrí si calificas para un plan de salud privado con beneficios exclusivos.
+      Completá este formulario rápido y te contactamos sin compromiso.
+    </p>
+
+    <form class="formulario" action="/form" method="POST" id="formulario">
+      <button type="submit">Quiero recibir asesoramiento gratuito</button>
+
+      <input type="text" name="nombre" placeholder="Nombre" required>
+      <input type="number" name="edad" placeholder="Edad" required>
+      <input type="text" name="ciudad" placeholder="Ciudad o provincia" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="tel" name="telefono" placeholder="Teléfono" required>
+
+      <div class="radio-group">
+        <label>¿Tenés obra social actualmente?</label>
+        <label><input type="radio" name="obraSocial" value="sí" required> Sí</label>
+        <label><input type="radio" name="obraSocial" value="no" required> No</label>
+      </div>
+
+      <div class="checkbox">
+        <input type="checkbox" name="aceptaTerminos" id="aceptaTerminos" required>
+        <span>Acepto ser contactado por asesores de planes médicos y acepto la <a href="#">política de
+            privacidad</a></span>
+      </div>
+    </form>
+
+    <div class="confianza">
+      <h2>Por qué confiar en nosotros?</h2>
+      <ul>
+        <li>Asesoramiento gratuito, sin compromiso.</li>
+        <li>Comparás opciones en minutos.</li>
+        <li>Más de 10,000 personas ya eligieron su cobertura ideal con nuestra ayuda.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+  const formulario = document.getElementById("formulario");
+
+  formulario.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Evita que recargue la página
+
+    const formData = new FormData(formulario);
+    
+    const aceptaCheckbox = document.getElementById("aceptaTerminos");
+
+    const datos = {
+      nombre: formData.get("nombre"),
+      edad: formData.get("edad"),
+      ciudad: formData.get("ciudad"),
+      email: formData.get("email"),
+      telefono: formData.get("telefono"),
+      obraSocial: formData.get("obraSocial"),
+      aceptaTerminos: aceptaCheckbox.checked
+    };
+
+    try {
+      const response = await fetch("/form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datos)
+      });
+
+      if (response.ok) {
+        Toastify({
+          text: "Formulario enviado correctamente. Te contactaremos pronto.",
+          className: "info",
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          }
+        }).showToast();
+        formulario.reset(); // Limpia el formulario
+      } else {
+        alert("❌ Hubo un error al enviar el formulario.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("❌ Error de conexión con el servidor.");
+    }
+  });
+</script>
+
+</html>

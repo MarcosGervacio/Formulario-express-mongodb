@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #e9f4fd;
+  color: #1d1d1d;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #1d3c6a;
+}
+
+.descripcion {
+  text-align: center;
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.formulario button {
+  background: #1e90ff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.formulario input[type="text"],
+.formulario input[type="number"],
+.formulario input[type="email"],
+.formulario input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.radio-group {
+  margin: 15px 0;
+}
+
+.radio-group label {
+  display: block;
+  margin-top: 6px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.checkbox a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.confianza {
+  margin-top: 30px;
+}
+
+.confianza h2 {
+  font-size: 18px;
+  color: #1d3c6a;
+  margin-bottom: 10px;
+}
+
+.confianza ul {
+  list-style: none;
+}
+
+.confianza li::before {
+  content: "✔";
+  color: green;
+  margin-right: 8px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .formulario button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
