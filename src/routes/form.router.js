@@ -5,8 +5,8 @@ const router = Router();
 
 router.post('/form', async (req, res) => {
   try {
-    const {nombre, edad, ciudad, email, telefono, obraSocial, aceptaTerminos} = req.body;
-    const newForm = await formModel.create({nombre, edad, ciudad, email, telefono, obraSocial, aceptaTerminos});
+    const {tipoCobertura, nombre, edad, dni, ciudad, email, telefono, disponibilidad, cantidadFamilia, situacionLaboral, obraSocial, aceptaTerminos} = req.body;
+    const newForm = await formModel.create({tipoCobertura, nombre, edad, dni, ciudad, email, telefono, disponibilidad, cantidadFamilia, situacionLaboral, obraSocial, aceptaTerminos});
     res.status(201).json(newForm);
   } catch (error) {
     console.error('Error creating form:', error);

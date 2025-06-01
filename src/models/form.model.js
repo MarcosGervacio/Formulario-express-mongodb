@@ -9,12 +9,20 @@ const formSchema = new mongoose.Schema({
       return hoy.toISOString().split('T')[0]; // "YYYY-MM-DD"
     },
   },
+  tipoCobertura: {
+    type: String,
+    required: true,
+  },
   nombre: {
     type: String,
     required: true,
   },
   edad: {
     type: Number,
+    required: true,
+  },
+  dni: {
+    type: String,
     required: true,
   },
   ciudad: {
@@ -26,6 +34,18 @@ const formSchema = new mongoose.Schema({
     required: true,
   },
   telefono: {
+    type: String,
+    required: true,
+  },
+  disponibilidad: {
+    type: String,
+    required: false,
+  },
+  cantidadFamilia: {
+    type: Number,
+    required: false,
+  },
+  situacionLaboral: {
     type: String,
     required: true,
   },

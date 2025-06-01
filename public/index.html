@@ -19,12 +19,46 @@
 
     <form class="formulario" action="/form" method="POST" id="formulario">
       <button type="submit">Quiero recibir asesoramiento gratuito</button>
+      <div class="opciones-planes">
+        <div class="opcion" data-valor="solo">
+          <p>para mí</p>
+          <img src="assets/solo.png" alt="Para mí">
+        </div>
+        <div class="opcion" data-valor="pareja">
+          <p>para mí y mi pareja</p>
+          <img src="assets/pareja.png" alt="Para mí y mi pareja">
+        </div>
+        <div class="opcion" data-valor="hijos">
+          <p>para mí y mis hijos</p>
+          <img src="assets/hijos.png" alt="Para mí y mis hijos">
+        </div>
+        <div class="opcion" data-valor="familia">
+          <p>para mí y mi familia</p>
+          <img src="assets/familia.png" alt="Para mí y mi familia">
+        </div>
+      </div>
 
+
+      <input type="hidden" name="tipoCobertura" id="tipoCobertura">
       <input type="text" name="nombre" placeholder="Nombre" required>
-      <input type="number" name="edad" placeholder="Edad" required>
+      <input type="number" name="edad" placeholder="Edad" min="1" required>
+      <input type="text" name="dni" placeholder="DNI" required>
       <input type="text" name="ciudad" placeholder="Ciudad o provincia" required>
       <input type="email" name="email" placeholder="Email" required>
       <input type="tel" name="telefono" placeholder="Teléfono" required>
+      <input type="number" name="cantidadFamilia" id="cantidadFamilia" min="1" max="20" placeholder="Cantidad de personas que integran el grupo familiar" style="display: none">
+      <input type="text" name="disponibilidad" placeholder="Disponibilidad horaria">
+      <label>Observaciones:</label><br>
+      <textarea name="observaciones"
+        placeholder="(Busco una prepaga economica / busco una parepaga de alto nivel / tengo cud / tengo diabetes / tengo hipertensión / etc.)"></textarea>
+
+
+      <select name="situacionLaboral" id="situacionLaboral" required>
+        <option value="">Situacion Laboral</option>
+        <option value="particular">Particular</option>
+        <option value="monotributista">Monotributista</option>
+        <option value="relacion_dependencia">Relación de dependencia</option>
+      </select>
 
       <div class="radio-group">
         <label>¿Tenés obra social actualmente?</label>
@@ -57,15 +91,21 @@
     e.preventDefault(); // Evita que recargue la página
 
     const formData = new FormData(formulario);
-    
+
     const aceptaCheckbox = document.getElementById("aceptaTerminos");
 
     const datos = {
+      tipoCobertura: formData.get("tipoCobertura"),
       nombre: formData.get("nombre"),
       edad: formData.get("edad"),
+      dni: formData.get("dni"),
       ciudad: formData.get("ciudad"),
       email: formData.get("email"),
       telefono: formData.get("telefono"),
+      disponibilidad: formData.get("disponibilidad"),
+      cantidadFamilia: formData.get("cantidadFamilia"),
+      situacionLaboral: formData.get("situacionLaboral"),
+      observaciones: formData.get("observaciones"),
       obraSocial: formData.get("obraSocial"),
       aceptaTerminos: aceptaCheckbox.checked
     };
@@ -96,6 +136,49 @@
       alert("❌ Error de conexión con el servidor.");
     }
   });
+
+
+  const opciones = document.querySelectorAll(".opcion");
+  const inputTipoCobertura = document.getElementById("tipoCobertura");
+
+  opciones.forEach(opcion => {
+    opcion.addEventListener("click", () => {
+      opciones.forEach(o => o.classList.remove("seleccionada"));
+      opcion.classList.add("seleccionada");
+
+      const valor = opcion.dataset.valor;
+      inputTipoCobertura.value = valor;
+      console.log("Tipo seleccionado:", valor);
+
+    });
+  });
+
+  formulario.addEventListener("submit", () => {
+    document.querySelectorAll('.opcion').forEach(opcion => {
+      opcion.classList.remove('seleccionada');
+    });
+  });
+  const campoFamilia = document.getElementById("cantidadFamilia");
+
+opciones.forEach(opcion => {
+  opcion.addEventListener("click", () => {
+    opciones.forEach(o => o.classList.remove("seleccionada"));
+    opcion.classList.add("seleccionada");
+
+    const valor = opcion.dataset.valor;
+    inputTipoCobertura.value = valor;
+
+
+    if (valor === "familia" || valor === "hijos") {
+      campoFamilia.style.display = "block";
+      campoFamilia.required = true;
+    } else {
+      campoFamilia.style.display = "none";
+      campoFamilia.value = ""; 
+      campoFamilia.required = false;
+    }
+  });
+});
 </script>
 
 </html>
