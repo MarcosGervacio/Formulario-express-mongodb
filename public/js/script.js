@@ -104,3 +104,23 @@ function mostrarFormularioAnimado() {
     form.style.maxHeight = form.scrollHeight + "px";
   });
 }
+
+  const abrir = document.getElementById("abrirModal");
+  const cerrar = document.getElementById("cerrarModal");
+  const modal = document.getElementById("modal");
+
+  abrir.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.style.display = "flex";
+  });
+
+  cerrar.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // También cerrar si se hace clic fuera del contenido
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
