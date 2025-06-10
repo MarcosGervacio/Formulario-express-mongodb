@@ -1,10 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
 import formRouter from "./routes/form.router.js"; 
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express();
-const MONGO_URI = "mongodb+srv://marger96vm:pe3EjAWYu1pdpG0a@cluster0.jaoerii.mongodb.net/seguros?retryWrites=true&w=majority&appName=Cluster0"
-const PORT = 8080;
+const MONGO_URI = process.env.MONGO_URI;
+const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
