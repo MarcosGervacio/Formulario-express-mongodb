@@ -101,21 +101,6 @@ h1 {
   margin-right: 8px;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-  .container {
-    padding: 20px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  .formulario button {
-    font-size: 14px;
-    padding: 10px;
-  }
-}
 
 .opciones-planes {
   display: flex;
@@ -225,4 +210,54 @@ h1 {
 @keyframes aparecer {
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .formulario button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .opcion img {
+  width: 50px;
+  height: auto;
+  opacity: 0.6;
+  }
+}
+
+@media (max-width: 400px) {
+  .opcion img {
+  width: 40px;
+  height: auto;
+  opacity: 0.6;
+  }
+.opcion p {
+  font-size: 10px;
+  color: #333;
+  margin-top: 10px;
+  min-height: 30px; /* garantiza que todos tengan mismo espacio para el texto */
+}
+}
+
+@media (max-width: 360px) {
+  .opcion img {
+  width: 30px;
+  height: auto;
+  opacity: 0.6;
+  }
+.opcion p {
+  font-size: 8px;
+  color: #333;
+  margin-top: 10px;
+  min-height: 30px; /* garantiza que todos tengan mismo espacio para el texto */
+}
 }
