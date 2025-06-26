@@ -6,15 +6,21 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #e9f4fd;
+  background: #003D3B;
   color: #1d1d1d;
   padding: 20px;
+}
+
+.logo{
+  width: 150px;
+  margin: 0 auto;
+  display: block;
 }
 
 .container {
   max-width: 600px;
   margin: auto;
-  background: white;
+  background: rgb(210, 252, 219);
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -24,7 +30,7 @@ h1 {
   font-size: 24px;
   text-align: center;
   margin-bottom: 15px;
-  color: #1d3c6a;
+  color: #07827E;
 }
 
 .descripcion {
@@ -87,7 +93,7 @@ h1 {
 
 .confianza h2 {
   font-size: 18px;
-  color: #1d3c6a;
+  color: #07827E;
   margin-bottom: 10px;
 }
 
@@ -170,7 +176,7 @@ h1 {
 }
 
 .modal-contenido {
-  background-color: white;
+  background-color: rgb(210, 252, 219);
   padding: 20px;
   border-radius: 10px;
   width: 90%;
@@ -184,14 +190,14 @@ h1 {
 .modal-contenido h2 {
   text-align: center;
   font-size: 20px;
-  color: #1d3c6a;
+  color: #07827E;
   margin-bottom: 15px;
   margin-top: 15px;
 }
 
 .modal-contenido h3 {
   font-size: 20px;
-  color: #1d3c6a;
+  color: #07827E;
   margin-bottom: 15px;
   margin-top: 15px;
 }
@@ -214,6 +220,9 @@ h1 {
 
 /* Responsive */
 @media (max-width: 480px) {
+    .logo{
+  width: 100px;
+}
   .container {
     padding: 20px;
   }
@@ -249,6 +258,9 @@ h1 {
 }
 
 @media (max-width: 360px) {
+      .logo{
+  width: 70px;
+}
   .opcion img {
   width: 30px;
   height: auto;
